@@ -19,14 +19,16 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: `${site.name} — Yazılım Geliştirici`,
   description:
-    "Ömer Şenem — React Native, Next.js ve Go ile mobil ve web uygulamaları geliştiren yazılımcı.",
+    "Ömer Senem — React, Next.js, Vue ve React Native ile web ve mobil uygulamalar geliştiren yazılım geliştirici. Veriforce'ta Software Developer.",
   keywords: [
-    "Ömer Şenem",
+    "Ömer Senem",
     "yazılım geliştirici",
     "software developer",
-    "React Native",
+    "frontend developer",
+    "React",
     "Next.js",
-    "Go",
+    "Vue.js",
+    "React Native",
   ],
   authors: [{ name: site.name }],
   openGraph: {

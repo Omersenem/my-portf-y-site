@@ -1,6 +1,7 @@
 "use client";
 
 import { useLanguage } from "./LanguageProvider";
+import { site } from "@/lib/site";
 
 export function Hero() {
   const { t } = useLanguage();
@@ -33,6 +34,13 @@ export function Hero() {
             className="w-full rounded-full border border-[var(--color-border)] px-6 py-3 text-sm font-semibold text-[var(--color-text)] transition-colors hover:border-[var(--color-accent)] sm:w-auto"
           >
             {t.hero.ctaContact}
+          </a>
+          <a
+            href={site.cv}
+            download
+            className="w-full rounded-full border border-[var(--color-border)] px-6 py-3 text-sm font-semibold text-[var(--color-text)] transition-colors hover:border-[var(--color-accent)] sm:w-auto"
+          >
+            {t.hero.ctaCv}
           </a>
         </div>
       </div>
