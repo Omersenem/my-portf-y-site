@@ -1,4 +1,4 @@
-name: Build & Deploy to Hostinger
+name: Deploy to GitHub Pages
 
 # main dalına her push'ta çalışır
 on:
@@ -6,10 +6,20 @@ on:
     branches: [main]
   workflow_dispatch: # GitHub arayüzünden elle de tetiklenebilir
 
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+# GitHub Pages deploy izinleri
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
+# Aynı anda tek deploy çalışsın
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -26,15 +36,21 @@ jobs:
       - name: Build static export
         run: npm run build
 
-      - name: Deploy to Hostinger via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          # Build çıktısının bulunduğu klasör
-          local-dir: ./out/
-          # Hostinger'da domain'in dosyalarının olduğu klasör.
-          # Ana domain ise genelde: ./public_html/
-          # Addon/ek domain ise: ./domains/omersenem.com/public_html/
-          server-dir: ./public_html/
+          path: ./out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
