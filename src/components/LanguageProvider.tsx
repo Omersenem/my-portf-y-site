@@ -25,6 +25,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const saved = window.localStorage.getItem("lang") as Lang | null;
     if (saved === "tr" || saved === "en") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- statik export'ta hydration uyumu için ilk render sonrası okunmalı
       setLang(saved);
     } else if (navigator.language.startsWith("en")) {
       setLang("en");

@@ -1,0 +1,12 @@
+/* learn-english alt kimliği: yeşil-camgöbeği vurgu, portföyün koyu zemini korunur.
+   Mevcut utility'ler var(--color-accent) kullandığı için sadece token'ları
+   yeniden tanımlamak yeterli. */
+.learn {
+  --color-accent: #34d399;
+  --color-accent-2: #38bdf8;
+  min-height: 100dvh;
+}
+
+.learn ::selection {
+  background: rgba(52, 211, 153, 0.35);
+}

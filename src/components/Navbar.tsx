@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useLanguage } from "./LanguageProvider";
 import { site } from "@/lib/site";
 
@@ -16,11 +17,11 @@ export function Navbar() {
   }, []);
 
   const links = [
-    { href: "#about", label: t.nav.about },
-    { href: "#experience", label: t.nav.experience },
-    { href: "#skills", label: t.nav.skills },
-    { href: "#projects", label: t.nav.projects },
-    { href: "#contact", label: t.nav.contact },
+    { href: "/#about", label: t.nav.about },
+    { href: "/#experience", label: t.nav.experience },
+    { href: "/#skills", label: t.nav.skills },
+    { href: "/#projects", label: t.nav.projects },
+    { href: "/#contact", label: t.nav.contact },
   ];
 
   return (
@@ -32,10 +33,10 @@ export function Navbar() {
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-5xl items-center justify-between px-5">
-        <a href="#" className="font-mono text-sm font-semibold tracking-tight">
+        <Link href="/" className="font-mono text-sm font-semibold tracking-tight">
           {site.name.split(" ")[0].toLowerCase()}
           <span className="gradient-text">.dev</span>
-        </a>
+        </Link>
 
         <div className="hidden items-center gap-7 md:flex">
           {links.map((link) => (
